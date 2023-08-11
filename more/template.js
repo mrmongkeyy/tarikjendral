@@ -3,7 +3,7 @@ module.exports = {
 		return `
 			<html>
 			<head>
-				<title>Running Man: Spesial Kemerdekaan!</title>
+				<title>TarikJendral!: Spesial Kemerdekaan!</title>
 				<meta name=viewport content=width=device-width,initial-scale=1>
 				<style>
 					@font-face{
