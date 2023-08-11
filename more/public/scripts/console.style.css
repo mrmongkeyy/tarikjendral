@@ -1,0 +1,70 @@
+body{
+	position:absolute;
+	top:0;
+	left:0;
+	width:100%;
+	height:100%;
+	display:flex;
+	align-items:center;
+	justify-content:center;
+	margin:0;
+	padding:0;
+	user-select:none;
+}
+
+#mainmenu{
+	position:absolute;
+	width:100%;
+	height:100%;
+	top:0;
+	left:0;
+	display:flex;
+	align-items:center;
+	justify-content:center;
+	flex-direction:column;
+	font-family:cursive;
+	font-size:12px;
+	background:whitesmoke;
+}
+
+#gameend{
+	position:absolute;
+	width:100%;
+	height:100%;
+	top:0;
+	left:0;
+	display:none;
+	align-items:center;
+	justify-content:center;
+	flex-direction:column;
+	font-family:cursive;
+	font-size:12px;
+}
+
+#gameplayui{
+	width:40%;
+	height:100%;
+	position:absolute;
+}
+
+#gamepause{
+	position:absolute;
+	width:100%;
+	height:100%;
+	top:0;
+	left:0;
+	display:none;
+	align-items:center;
+	justify-content:center;
+	flex-direction:column;
+	font-family:cursive;
+	font-size:12px;
+	background:whitesmoke;
+}
+
+#whitebox{
+	width:400px;
+	height:400px;
+	background:white;
+	border-radius:20px;
+}
