@@ -7,59 +7,59 @@ const config = {
 		{
 			id:'proclamationSound',
 			type:'audio',
-			src:'/file?fn=proclamationsound.mp3&&type=audio/mp3'
+			src:'./more/media/proclamationsound.mp3'
 		},
 		{
 			id:'pullicon',
 			type:'img',
-			src:'/file?fn=pull.png'
+			src:'./more/media/pull.png'
 		},
 		{
 			id:'independentPng',
 			type:'img',
-			src:'/file?fn=goodindependentlabel.png'
+			src:'./more/media/goodindependentlabel.png'
 		},
 		{
 			id:'palmTree',
 			type:'img',
-			src:'/file?fn=palmtree.png'
+			src:'./more/media/palmtree.png'
 		},
 		{
 			id:'medal',
 			type:'img',
-			src:'/file?fn=medal.png'
+			src:'./more/media/medal.png'
 		},
 		{
 			id:'merdeka',
 			type:'audio',
-			src:'/file?fn=merdeka.wav&&type=audio/wav'
+			src:'./more/media/merdeka.wav'
 		},
 		{
 			id:'lose',
 			type:'audio',
-			src:'/file?fn=losepeople.wav&&type=audio/wav'
+			src:'./more/media/losepeople.wav'
 		},
 		{
 			id:'win',
 			type:'audio',
-			src:'/file?fn=winapplouse.wav&&type=audio/wav'
+			src:'./more/media/winapplouse.wav'
 		},
 		{
 			id:'crowd',
 			type:'audio',
-			src:'/file?fn=crowdmale.wav&&type=audio/wav',
+			src:'./more/media/crowdmale.wav',
 			loop:true
 		},
 		{
 			id:'bgmusic',
 			type:'audio',
-			src:'/file?fn=bgmusic.wav&&type=audio/wav',
+			src:'./more/media/bgmusic.wav',
 			loop:true
 		},
 		{
 			id:'countdown',
 			type:'audio',
-			src:'/file?fn=321go.mp3&&type=audio/mp3'
+			src:'./more/media/321go.mp3'
 		}
 	]
 }
@@ -99,7 +99,7 @@ const forceWinner = function(winner){
 			"
 			>
 				<div>
-					<img src=/file?fn=bluemonster.png
+					<img src=./more/media/bluemonster.png
 					style="
 						width:150px;
 						height:150px;

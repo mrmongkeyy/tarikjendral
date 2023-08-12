@@ -1,8 +1,8 @@
 CONSOLE.Object('playermechanism',{
 	state:0,startOk:false,wannaStop:true,
 	audios:{
-		badtime:CONSOLE.audio({src:'/file?fn=badtime.wav'}),
-		goodtime:CONSOLE.audio({src:'/file?fn=goodtime.wav'})
+		badtime:CONSOLE.audio({src:'./more/media/badtime.wav'}),
+		goodtime:CONSOLE.audio({src:'./more/media/goodtime.wav'})
 	},
 	start(){
 		this.engine.assets.audio.countdown.play();
@@ -16,13 +16,13 @@ CONSOLE.Object('playermechanism',{
 	playProclamationSound(icon){
 		if(this.engine.assets.audio.proclamationSound.paused){
 			this.engine.assets.audio.proclamationSound.play();
-			icon.src = '/file?fn=nomusic.png';
+			icon.src = './more/media/nomusic.png';
 		}else{
 			this.engine.assets.audio.proclamationSound.pause();
-			icon.src = '/file?fn=musicnote.png';
+			icon.src = './more/media/musicnote.png';
 		}
 		this.engine.assets.audio.proclamationSound.onended = ()=>{
-			icon.src = '/file?fn=musicnote.png';
+			icon.src = './more/media/musicnote.png';
 		}
 	},
 	init(){

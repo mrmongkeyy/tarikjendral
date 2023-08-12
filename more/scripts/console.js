@@ -70,7 +70,7 @@ class consolE{
 	}
 	init(){
 		//give core css style to the game.
-		document.head.appendChild(this.makeElement({el:'link',props:{href:'/styles?fn=console.style',rel:'stylesheet'}}));
+		document.head.appendChild(this.makeElement({el:'link',props:{href:'./more/scripts/console.style.css',rel:'stylesheet'}}));
 		//
 		this.object.forEach((obj)=>{
 			if(obj.init){
