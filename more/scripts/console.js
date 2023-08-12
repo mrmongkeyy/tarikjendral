@@ -60,7 +60,7 @@ class consolE{
 	start(){
 		this.preload(
 			()=>{
-				console.log(this);
+				if(this.debug)console.log(this);
 				this.setupKeys();
 				this.setCanvas();
 				this.init();
@@ -310,7 +310,6 @@ class consolE{
 			text(text,x,y,optional){
 				Object.assign(this,optional);
 				this.fillText(text,x,y);
-				//else this.strokeText(text,x,y);
 			},
 			box(x,y,w,h){
 				

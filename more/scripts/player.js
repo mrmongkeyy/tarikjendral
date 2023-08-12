@@ -1,5 +1,5 @@
 CONSOLE.Object('playermechanism',{
-	state:0,startOk:false,wannaStop:true,
+	state:0,startOk:false,wannaStop:true,computerPowValue:.00005,
 	audios:{
 		badtime:CONSOLE.audio({src:'./more/media/badtime.wav'}),
 		goodtime:CONSOLE.audio({src:'./more/media/goodtime.wav'})
@@ -8,6 +8,9 @@ CONSOLE.Object('playermechanism',{
 		this.engine.assets.audio.countdown.play();
 		this.engine.assets.audio.countdown.onended = ()=>{
 			this.wannaStop = false;
+			//and play the crowd and bgmusic.
+			this.engine.assets.audio.bgmusic.play();
+			this.engine.assets.audio.crowd.play();
 		}
 		if(!this.engine.assets.audio.proclamationSound.paused){
 			this.engine.assets.audio.proclamationSound.pause();
@@ -35,7 +38,7 @@ CONSOLE.Object('playermechanism',{
 			y:this.engine.canvasSetting.height*2/10,
 			height:200,
 			parent:this,
-			turnValue:100,turn:0,
+			computerPullPower:.0037,//initial power.
 			init(){
 				
 			},
@@ -51,11 +54,8 @@ CONSOLE.Object('playermechanism',{
 					this.engine.g.circle(x,y-5,7,'black');
 				})
 			},
-			getNewTurn(){
-				this.turnValue = [100,200,300,400,500,600,700,800,900].getRandom();
-			},
 			pullComputer(){
-				this.parent.state += .0037;
+				this.parent.state += this.computerPullPower;
 			},
 			update(state){
 				this.pullComputer();
@@ -153,6 +153,8 @@ CONSOLE.Object('playermechanism',{
 					this.parent.audios.goodtime.play();
 					iris = this.engine.canvasSetting.height*3/9-iris;
 					this.engine.object.playermechanism.state -= iris*0.001;
+					//emplem the linear difficulty.
+					this.parent.timA.computerPullPower += this.parent.computerPowValue;
 				}
 				this.momentum.getNewTarget();
 			},
@@ -160,14 +162,6 @@ CONSOLE.Object('playermechanism',{
 				if(this.engine.keys[' '] && !this.spaceDown){
 					this.strike();
 					this.spaceDown = true;
-					
-					if(this.engine.assets.audio.bgmusic.paused){
-						this.engine.assets.audio.bgmusic.play();
-					}
-					if(this.engine.assets.audio.crowd.paused){
-						this.engine.assets.audio.crowd.play();
-					}
-					
 				}
 				if(!this.engine.keys[' '])this.spaceDown = false;
 			},
