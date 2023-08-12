@@ -1,8 +1,17 @@
+const canvasSetting = {
+	width:innerWidth/2,
+	height:innerHeight
+};
+
+//for mobile handling.
+if(innerWidth<=720){
+	Object.assign(canvasSetting,{
+		width:innerWidth
+	})
+}
+
 const config = {
-	canvasSetting:{
-		width:innerWidth/2,
-		height:innerHeight
-	},
+	canvasSetting,
 	toLoad:[
 		{
 			id:'proclamationSound',

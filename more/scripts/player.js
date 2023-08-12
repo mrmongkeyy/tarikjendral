@@ -28,12 +28,12 @@ CONSOLE.Object('playermechanism',{
 	init(){
 		this.centerPointY = this.engine.canvasSetting.height/2+this.state;
 		this.timA = {
-			peoplesLen:15,
+			peoplesLen:8,
 			engine:this.engine,
 			gap:10,
 			x:this.engine.canvasSetting.width/2,
 			y:this.engine.canvasSetting.height*2/10,
-			height:300,
+			height:200,
 			parent:this,
 			turnValue:100,turn:0,
 			init(){
@@ -55,7 +55,7 @@ CONSOLE.Object('playermechanism',{
 				this.turnValue = [100,200,300,400,500,600,700,800,900].getRandom();
 			},
 			pullComputer(){
-				this.parent.state += .0025;
+				this.parent.state += .0037;
 			},
 			update(state){
 				this.pullComputer();
@@ -69,13 +69,13 @@ CONSOLE.Object('playermechanism',{
 		}
 		
 		this.timB = {
-			peoplesLen:15,
+			peoplesLen:8,
 			engine:this.engine,
 			gap:10,
 			parent:this,
 			x:this.engine.canvasSetting.width/2,
 			y:this.engine.canvasSetting.height*8/10,
-			height:300,
+			height:200,
 			init(){
 				
 			},
@@ -121,7 +121,7 @@ CONSOLE.Object('playermechanism',{
 				height:this.engine.canvasSetting.height*3/9,
 				width:40,
 				hLiney:this.engine.canvasSetting.height*4/6,
-				hLineMoveDir:7,
+				hLineMoveDir:7.5,
 				targetY:this.engine.canvasSetting.height*1/2+15+(this.engine.canvasSetting.height*3/9/2)*[2/6,3/6,4/6,5/6].getRandom()*[-1,1].getRandom()+10,
 				getNewTarget(){this.targetY = this.engine.canvasSetting.height*1/2+15+(this.engine.canvasSetting.height*3/9/2)*[2/6,3/6,4/6,5/6].getRandom()*[-1,1].getRandom()+10},
 				update(){
@@ -143,20 +143,22 @@ CONSOLE.Object('playermechanism',{
 				}
 			},
 			spaceDown:false,
+			strike(){
+				let iris = this.momentum.targetY-this.momentum.hLiney;
+				if(iris<0)iris*=-1;
+				if(iris > 25){
+					this.parent.audios.badtime.play();
+					this.engine.object.playermechanism.state += iris*0.005;
+				}else {
+					this.parent.audios.goodtime.play();
+					iris = this.engine.canvasSetting.height*3/9-iris;
+					this.engine.object.playermechanism.state -= iris*0.001;
+				}
+				this.momentum.getNewTarget();
+			},
 			inputHandler(){
 				if(this.engine.keys[' '] && !this.spaceDown){
-					
-					let iris = this.momentum.targetY-this.momentum.hLiney;
-					if(iris<0)iris*=-1;
-					if(iris > 25){
-						this.parent.audios.badtime.play();
-						this.engine.object.playermechanism.state += iris*0.005;
-					}else {
-						this.parent.audios.goodtime.play();
-						iris = this.engine.canvasSetting.height*3/9-iris;
-						this.engine.object.playermechanism.state -= iris*0.001;
-					}
-					this.momentum.getNewTarget();
+					this.strike();
 					this.spaceDown = true;
 					
 					if(this.engine.assets.audio.bgmusic.paused){
@@ -193,7 +195,7 @@ CONSOLE.Object('playermechanism',{
 		this.engine.assets.audio.proclamationSound.play();
 		
 		//set the state.
-		find('#gameendstate').innerHTML = winner===1?"Ada Apa Jendral?":"Luar Biasa Jendral!";
+		find('#gameendstate').innerHTML = winner===1?'"Maju Terus Jendral!"':'"Luar Biasa Jendral!"';
 		//show the end ui.
 		find('#gameend').show('flex');
 		//hide the x.
@@ -211,6 +213,15 @@ CONSOLE.Object('playermechanism',{
 			this.handleGameEnd(winner);
 		}
 	},
+	mobileControll(){
+		if((this.engine.mouseDown || this.engine.touchDown) && !this.mobileWait){
+			this.timB.strike();
+			this.mobileWait = true;
+		}
+		if(!this.engine.mouseDown && !this.engine.touchDown){
+			this.mobileWait = false;
+		}
+	},
 	update(){
 		if(this.engine.mouseDown || this.engine.touchDown){
 			this.engine.assets.audio.merdeka.play();
@@ -219,6 +230,7 @@ CONSOLE.Object('playermechanism',{
 		this.timA.update(this.state);
 		this.timB.update(this.state);
 		this.handlingCenterPoint();
+		this.mobileControll();
 	},
 	draw(){
 		//drawing the line.

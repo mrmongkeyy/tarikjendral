@@ -315,7 +315,7 @@ class consolE{
 			box(x,y,w,h){
 				
 			},
-			imageSmoothingEnabled:true
+			imageSmoothingEnabled:false
 		}
 	}
 	animation(config={}){
