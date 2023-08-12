@@ -101,3 +101,11 @@ find('#infobutton').onclick = function(){
 find('#closeinfopage').onclick = function(){
 	find('#infomenu').hide();
 }
+//setup "sendmewa" button.
+find('#sendmewa').onclick = function(){
+	open('https://api.whatsapp.com/send?phone=+62895605801484&text=Halo bang!','_blank');
+}
+//setup "helpme" button.
+find('#helpme').onclick = function(){
+	open('https://saweria.co/gemasajaa','blank');
+}
